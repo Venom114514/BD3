@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李欣远生日快乐呀✨</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #fdf2f8; overflow: hidden; }
+        #startBtn {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px; font-size: 22px;
+            background: #ff85a2; color: white;
+            border: none; border-radius: 50px;
+            cursor: pointer; z-index: 999;
+            box-shadow: 0 6px 20px rgba(255,133,162,0.4);
+            touch-action: manipulation;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .gift-tag {
+            position: absolute; padding: 8px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px; font-size: 12px;
+            opacity: 0; animation: pop 0.3s forwards;
+            box-shadow: 0 3px 12px rgba(255,192,233,0.3);
+            z-index: 1;
+            width: 80px; height: 50px;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        @keyframes pop { from { transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+        .full-text {
+            position: absolute; width: 95%;
+            color: white; font-size: 16px; text-align: center;
+            opacity: 0; animation: slideUp 0.8s forwards;
+            z-index: 10; left: 2.5%;
+            text-shadow: 0 0 12px rgba(255,224,237,0.9);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            font-weight: 500;
+        }
+        @keyframes slideUp { from { transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        #transitionScreen {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #2d3748; opacity: 0; transition: opacity 0.8s ease;
+            z-index: 5;
+            background-image: radial-gradient(circle at 20% 30%, rgba(255,133,162,0.1) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 70%, rgba(192,132,252,0.1) 0%, transparent 50%);
+        }
+        .barrage {
+            position: absolute; 
+            font-size: 16px; 
+            font-weight: bold;
+            white-space: nowrap; 
+            z-index: 20;
+            opacity: 0; 
+            animation: barrageScroll 4s linear infinite;
+        }
+        @keyframes barrageScroll {
+            0% { transform: translateX(100vw); opacity: 1; }
+            100% { transform: translateX(-100%); opacity: 1; }
+        }
+        .barrage.white {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255,240,245,0.9);
+        }
+        .barrage.pink {
+            color: #ffc1e9;
+            text-shadow: 0 0 10px rgba(255,193,233,0.9);
+        }
+        .barrage.purple {
+            color: #d8b8ff;
+            text-shadow: 0 0 10px rgba(216,184,255,0.9);
+        }
+        .barrage.blue {
+            color: #b3e0ff;
+            text-shadow: 0 0 10px rgba(179,224,255,0.9);
+        }
+        .barrage.green {
+            color: #b2f0e1;
+            text-shadow: 0 0 10px rgba(178,240,225,0.9);
+        }
+    </style>
+    <meta name="AIGC" content='{"AIGC":{"Label":"2","ContentProducer":"WUSIGRAM","ProduceID":"rcXljv3l5qyMXA0oL/gR0KIVIUTwoUF7R1XsEkI06yk=","ReservedCode1":"h9Ii0FI/+OcPtsFYq2tPlJjzDIvZnWsB2/l0hpd+0OLe7OIrNWHm6jOdehNJ3r+g3kBcFz8CRHw7OAziZbcTkA==","ContentPropagator":"","PropagateID":"","ReservedCode2":""}}'>
+</head>
+<body>
+<button id="startBtn">点击心想事成✨</button>
+<div id="transitionScreen"></div>
+<div id="container"></div>
+
+<script>
+document.getElementById('startBtn').addEventListener('click', function() {
+    this.style.display = 'none';
+    showGiftTags();
+}, false);
+
+// 仅删除万圣节文案，恢复「好好爱自己」（替换爱心表情为星星）
+function showGiftTags() {
+    const container = document.getElementById('container');
+    const tags = ["好好爱自己✨", "梦想成真✨", "加油呀冲鸭💪", "平安喜乐😘", "生日快乐🌸"];
+    const colors = ['#ffccd5', '#ffe0ec', '#e8d4ff', '#d4e8ff', '#c1f0e0'];
+    const tagCount = 250;
+    const tagWidth = 60;
+    const tagHeight = 60;
+
+    for (let i = 0; i < tagCount; i++) {
+        const text = tags[Math.floor(Math.random() * tags.length)];
+        const tag = document.createElement('div');
+        tag.className = 'gift-tag';
+        tag.textContent = text;
+        tag.style.left = `${Math.floor(Math.random() * (window.innerWidth - tagWidth + 10) - 5)}px`;
+        tag.style.top = `${Math.floor(Math.random() * (window.innerHeight - tagHeight + 10) - 5)}px`;
+        tag.style.background = colors[Math.floor(Math.random() * colors.length)];
+        tag.style.animationDelay = `${i * 0.01}s`;
+        container.appendChild(tag);
+    }
+
+    setTimeout(() => {
+        document.querySelectorAll('.gift-tag').forEach((tag, i) => {
+            setTimeout(() => {
+                tag.style.opacity = 0;
+                tag.style.transform = 'scale(0.8)';
+            }, i * 0.02);
+        });
+        setTimeout(() => {
+            document.getElementById('transitionScreen').style.opacity = 1;
+            showFullText();
+        }, 800);
+    }, 2500);
+}
+
+// 其余部分完全不变
+function showFullText() {
+    const container = document.getElementById('container');
+    container.innerHTML = '';
+    const fullTexts = [
+        "1. 愿新岁，风遇山止，船到岸停，岁岁无忧，万事顺意！🎂",
+        "2. 愿所有美好都向你倾斜，像向日葵追光，像潮汐奔向月亮！🎉",
+        "3. 愿每一岁都奔走在自己的热爱里，烟火向星辰，所愿皆成真！🌟",
+        "4. 愿日子清透，世事温柔，所有美好奔你而来，生辰喜乐，岁岁长安！🌈",
+        "5. 愿你的生日，是岁月里最轻盈的一页，写满星光、花影，和不动声色的欢喜！🎈",
+        "6. 愿时光予你以偏爱，像晚风偏爱黄昏，像露水偏爱清晨，不早不晚，恰如其分！✨",
+        "7. 愿你的每一天，都像翻开一本旧书时偶然飘落的花瓣，带着往日的香气与今日的惊喜！❤️",
+        "8. 欣远，生日快乐！💫"
+    ];
+    const topPositions = ['3%', '15%', '27%', '39%', '51%', '63%', '75%', '87%'];
+
+    fullTexts.forEach((text, i) => {
+        const textEl = document.createElement('div');
+        textEl.className = 'full-text';
+        textEl.textContent = text;
+        textEl.style.top = topPositions[i];
+        textEl.style.animationDelay = `${i * 0.6}s`;
+        container.appendChild(textEl);
+    });
+
+    setTimeout(() => {
+        document.querySelectorAll('.full-text').forEach((text, i) => {
+            setTimeout(() => {
+                text.style.opacity = 0;
+                text.style.transform = 'translateY(20px)';
+            }, i * 0.3);
+        });
+        setTimeout(() => {
+            container.innerHTML = '';
+            showBarrage();
+        }, 1000);
+    }, 4000);
+}
+
+function showBarrage() {
+    const container = document.getElementById('container');
+    const texts = [
+          '生日快乐✊🏻', '自在发光💪', '万事顺意🌟',
+          '岁岁欢愉🌸', '平安喜乐🚀', '得偿所愿🏆',
+          '新岁闪闪发光⚡', '岁岁皆胜意✨', '喜乐常伴🌈',
+          '生辰大吉！', '好运加满！', '岁岁无忧！',
+          '幸福美满！', '以梦为翼！', '岁岁安康！',
+          '日日欢喜！', '前路璀璨！', '生日快乐！'
+    ];
+    const count = 125;
+
+    for (let i = 0; i < count; i++) {
+        const barrage = document.createElement('div');
+        barrage.className = 'barrage';
+        barrage.textContent = texts[Math.floor(Math.random() * texts.length)];
+        
+        const colorType = Math.random();
+        if (colorType < 0.85) {
+            barrage.classList.add('white');
+        } else if (colorType < 0.9) {
+            barrage.classList.add('pink');
+        } else if (colorType < 0.95) {
+            barrage.classList.add('purple');
+        } else if (colorType < 0.975) {
+            barrage.classList.add('blue');
+        } else {
+            barrage.classList.add('green');
+        }
+
+        barrage.style.top = `${Math.random() * 100}vh`;
+        barrage.style.fontSize = `${16 + Math.random() * 8}px`;
+        barrage.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(barrage);
+    }
+}
+</script>
