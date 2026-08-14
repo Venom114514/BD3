@@ -83,7 +83,7 @@
             text-shadow: 0 0 10px rgba(178,240,225,0.9);
         }
     </style>
-    <meta name="AIGC" content='{"AIGC":{"Label":"2","ContentProducer":"WUSIGRAM","ProduceID":"rcXljv3l5qyMXA0oL/gR0KIVIUTwoUF7R1XsEkI06yk=","ReservedCode1":"h9Ii0FI/+OcPtsFYq2tPlJjzDIvZnWsB2/l0hpd+0OLe7OIrNWHm6jOdehNJ3r+g3kBcFz8CRHw7OAziZbcTkA==","ContentPropagator":"","PropagateID":"","ReservedCode2":""}}'>
+    <meta name="AIGC" content='{"AIGC":{"Label":"2","ContentProducer":"WUSIGRAM","ProduceID":"rcXljv3l5qyMXA0oL/gR0KIVIUTwoUF7R1XsEkI06yk=","ReservedCode1":"h9Ii0FI/+OcPtsFYq2tPlJjzDIvZnWsB2/l0hpd+0OLT9hARt6RBeQPEa/WSRRTuXxm2rQMdXjf0cSgJCnd3tA==","ContentPropagator":"","PropagateID":"","ReservedCode2":""}}'>
 </head>
 <body>
 <button id="startBtn">点击心想事成✨</button>
@@ -152,7 +152,7 @@ function showFullText() {
         textEl.className = 'full-text';
         textEl.textContent = text;
         textEl.style.top = topPositions[i];
-        textEl.style.animationDelay = `${i * 0.6}s`;
+        textEl.style.animationDelay = `${i * 1.25}s`;
         container.appendChild(textEl);
     });
 
@@ -161,13 +161,13 @@ function showFullText() {
             setTimeout(() => {
                 text.style.opacity = 0;
                 text.style.transform = 'translateY(20px)';
-            }, i * 0.3);
+            }, i * 0.6);
         });
         setTimeout(() => {
             container.innerHTML = '';
             showBarrage();
         }, 1000);
-    }, 4000);
+    }, 10000);
 }
 
 function showBarrage() {
